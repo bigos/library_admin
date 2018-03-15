@@ -45,3 +45,4 @@ group :development do
   gem 'spring'
 end
 
+gem 'activeadmin', '~> 1.2.1'
