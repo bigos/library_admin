@@ -3,3 +3,5 @@
 *** Rails version used
 For some reason activeadmin did not work with Rails 4.1.0, I have encountered
 problems with gems conflicts when running bundle install.
+** Example application
+https://github.com/activeadmin/demo.activeadmin.info
