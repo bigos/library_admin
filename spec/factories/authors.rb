@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :author do
     first_name "MyString"
     middle_names "MyString"
