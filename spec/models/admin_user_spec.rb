@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: admin_users
 #
 #  id                     :integer          not null, primary key
 #  email                  :string(255)      default(""), not null
@@ -18,13 +18,17 @@
 #
 # Indexes
 #
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_admin_users_on_email                 (email) UNIQUE
+#  index_admin_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
-FactoryBot.define do
-  factory :user do
-    email 'user@example.com'
-    password 'secret'
+require 'rails_helper'
+
+RSpec.describe AdminUser, type: :model do
+  context 'validations' do
+    it 'should have valid factory' do
+      p = FactoryBot.build(:admin_user)
+      expect(p).to be_valid
+    end
   end
 end
