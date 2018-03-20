@@ -20,5 +20,10 @@
 require 'rails_helper'
 
 RSpec.describe Loan, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'validations' do
+    it 'should have valid factory' do
+      p = FactoryBot.build(:loan)
+      expect(p).to be_valid
+    end
+  end
 end

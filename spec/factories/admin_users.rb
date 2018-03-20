@@ -24,6 +24,7 @@
 
 FactoryBot.define do
   factory :admin_user do
-
+    email 'admin_user@example.com'
+    password 'secret'
   end
 end
