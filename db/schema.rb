@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320174849) do
+ActiveRecord::Schema.define(version: 20180320181112) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -46,6 +46,41 @@ ActiveRecord::Schema.define(version: 20180320174849) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "authors", force: :cascade do |t|
+    t.string   "first_name",   limit: 255
+    t.string   "middle_names", limit: 255
+    t.string   "last_name",    limit: 255
+    t.integer  "publisher_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "authors", ["publisher_id"], name: "index_authors_on_publisher_id", using: :btree
+
+  create_table "books", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.integer  "author_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "books", ["author_id"], name: "index_books_on_author_id", using: :btree
+
+  create_table "loans", force: :cascade do |t|
+    t.integer  "book_id",     limit: 4
+    t.date     "return_date"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "loans", ["book_id"], name: "index_loans_on_book_id", using: :btree
+
+  create_table "publishers", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -64,4 +99,6 @@ ActiveRecord::Schema.define(version: 20180320174849) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "authors", "publishers"
+  add_foreign_key "loans", "books"
 end
