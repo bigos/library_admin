@@ -268,7 +268,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise
-  factory_bot_rails
+  factory_bot_rails (~> 4.0)
   forgery (= 0.6.0)
   jbuilder (~> 2.0)
   jquery-rails
