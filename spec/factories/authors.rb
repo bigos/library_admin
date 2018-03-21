@@ -24,6 +24,6 @@ FactoryBot.define do
     first_name "MyString"
     middle_names "MyString"
     last_name "MyString"
-    publisher nil
+    publisher
   end
 end
