@@ -16,6 +16,6 @@
 FactoryBot.define do
   factory :book do
     title 'MyString'
-    author nil
+    author
   end
 end

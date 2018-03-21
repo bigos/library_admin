@@ -14,12 +14,30 @@
 #
 
 require 'rails_helper'
+require 'byebug'
 
 RSpec.describe Book, type: :model do
   context 'validations' do
-    it 'should have valid factory' do
-      p = FactoryBot.build(:book)
-      expect(p).to be_valid
+    it 'fails on no title' do
+      b = build(:book, title: nil)
+      expect(b).not_to be_valid
+    end
+
+    it 'fails on no author' do
+      b = build(:book, author: nil)
+      expect(b).not_to be_valid
+    end
+
+    it 'fails on the same author and title' do
+      b1 = build(:book)
+      expect(b1).to be_valid
+      b1.save
+
+      b2 = build(:book, author_id: b1.author_id, title: b1.title)
+      expect(b2).not_to be_valid
+
+      b3 = build(:book, title: 'Most Unique')
+      expect(b3).to be_valid
     end
   end
 end
