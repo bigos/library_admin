@@ -22,4 +22,8 @@
 class Author < ActiveRecord::Base
   belongs_to :publisher
   has_many :books
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :publisher_id, presence: true
 end
