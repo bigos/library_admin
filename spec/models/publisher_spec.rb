@@ -12,9 +12,9 @@ require 'rails_helper'
 
 RSpec.describe Publisher, type: :model do
   context 'validations' do
-    it 'should have valid factory' do
-      p = FactoryBot.build(:publisher)
-      expect(p).to be_valid
+    it 'fails on no name' do
+      p = build(:publisher, name: nil)
+      expect(p).not_to be_valid
     end
   end
 end
