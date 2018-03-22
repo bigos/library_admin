@@ -15,6 +15,7 @@
 
 class Book < ActiveRecord::Base
   belongs_to :author
+
   validates :title, length: { minimum: 1 }
   validates :author_id, presence: true
   validates :title, uniqueness: { scope: :author }

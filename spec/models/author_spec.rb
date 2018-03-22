@@ -23,9 +23,24 @@ require 'rails_helper'
 
 RSpec.describe Author, type: :model do
   context 'validations' do
-    it 'should have valid factory' do
-      p = FactoryBot.build(:author)
-      expect(p).to be_valid
+    it 'fails on no first_name' do
+      b = build(:author, first_name: nil)
+      expect(b).not_to be_valid
+    end
+
+    it 'works no middle_names' do
+      b = build(:author, middle_names: nil)
+      expect(b).to be_valid
+    end
+
+    it 'fails on no last_name' do
+      b = build(:author, last_name: nil)
+      expect(b).not_to be_valid
+    end
+
+    it 'fails on no publisher_id' do
+      b = build(:author, publisher_id: nil)
+      expect(b).not_to be_valid
     end
   end
 end
