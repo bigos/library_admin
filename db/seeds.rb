@@ -18,17 +18,14 @@ if Rails.env.development?
       created += 1
     end
   end
-end
 
-if Rails.env.development?
   created = 0
-  random = Random.new(Time.now.to_i)
-  if (created % 5).zero?
-    mns = Forgery(:lorem_ipsum).character(random: true).capitalize
-  else
-    mns = nil
-  end
   while created < 500
+    if (created % 5).zero?
+      mns = Forgery(:lorem_ipsum).character(random: true).capitalize
+    else
+      mns = nil
+    end
     words = Forgery(:lorem_ipsum).words(random.rand(1..5), random: true)
     p = FactoryBot.build(:author, first_name: Forgery(:lorem_ipsum).word(random: true).capitalize,
                          last_name: Forgery(:lorem_ipsum).word(random: true).capitalize,
@@ -39,16 +36,8 @@ if Rails.env.development?
       created += 1
     end
   end
-end
 
-if Rails.env.development?
   created = 0
-  random = Random.new(Time.now.to_i)
-  if (created % 5).zero?
-    mns = Forgery(:lorem_ipsum).character(random: true).capitalize
-  else
-    mns = nil
-  end
   while created < 500
     words = Forgery(:lorem_ipsum).words(random.rand(1..5), random: true)
     p = FactoryBot.build(:book, title: Forgery(:lorem_ipsum).words(random.rand(1..6), random: true).capitalize,
