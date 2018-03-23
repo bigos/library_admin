@@ -12,4 +12,12 @@ ActiveAdmin.register Author do
 #   permitted
 # end
 
+  show do
+    panel 'Books' do
+      table_for(author.books) do
+        column 'Title', :title
+        column 'Received On', :created_at
+      end
+    end
+  end
 end
