@@ -12,6 +12,25 @@ ActiveAdmin.register Author do
 #   permitted
 # end
 
+  index do |t|
+
+    column 'Id', :sortable => :id do |author|
+      link_to author.id.to_s, admin_author_path(author)
+    end
+
+    column 'Full Name', :sortable => :last_name do |author|
+      author.full_name
+    end
+
+    column 'Publisher', :sortable => :publisher do |author|
+      author.publisher
+    end
+
+    column 'Books', :sortable => nil do |author|
+      author.books.count
+    end
+  end
+
   show do
     panel 'Books' do
       table_for(author.books) do
